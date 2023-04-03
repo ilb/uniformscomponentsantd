@@ -22,18 +22,20 @@ export const setCursorPosition = (parent, position) => {
 
 export const genDynHTML = (text, compareText) => {
   let letterArray = [];
+  let error = false;
 
-  for (let i = 0; i < text.length; i++) {
+  for (let i = 0; i < compareText.length; i++) {
     if (text[i] && text[i] === compareText[i]) {
       letterArray.push({
-        letter: text[i],
-        value: `<span style="display: inline-block">${text[i]}</span>`
+        letter: text[i] || '',
+        value: `<span style="display: inline-block">${text[i] || ''}</span>`
       });
     } else {
       letterArray.push({
-        letter: text[i],
-        value: `<span style="color: red; display: inline-block">${text[i]}</span>`
+        letter: text[i] || '',
+        value: `<span style="color: red; display: inline-block">${text[i] || ''}</span>`
       });
+      error = true;
     }
   }
 
@@ -46,6 +48,7 @@ export const genDynHTML = (text, compareText) => {
   return {
     newHTML,
     newValue,
-    newLength: letterArray.length
+    newLength: letterArray.length,
+    error
   };
 };
