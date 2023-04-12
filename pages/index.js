@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable prettier/prettier */
+import React from 'react';
 import { AutoForm, SubmitField, AutoField } from 'uniforms-antd';
 import { ComparisonComponent, createSchemaBridge } from '../src/index';
 

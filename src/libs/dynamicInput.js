@@ -39,7 +39,6 @@ export const genDynHTML = (text, compareText) => {
     }
   }
 
-  // correction cursor. fixme hidden flashing cursor
   let newHTML = '';
   let newValue = '';
 
