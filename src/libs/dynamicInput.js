@@ -29,25 +29,22 @@ export const genDynHTML = (text, compareText) => {
   for (let i = 0; i < compareText.length; i++) {
     if (text[i] && text[i] === compareText[i]) {
       letterArray.push({
-        letter: text[i] || '',
-        value: `<span style="display: inline-block">${text[i] || ''}</span>`
+        letter: text[i] || ''
       });
     } else {
       letterArray.push({
         letter: text[i] || '',
-        value: `<span style="color: red; display: inline-block">${text[i] || ''}</span>`
+        style: 'color: red;font-weight: bold'
       });
       error = true;
     }
   }
-
-  let newHTML = '';
   let newValue = '';
 
-  letterArray.map((item) => ((newHTML += item.value), (newValue += item.letter)));
+  letterArray.map((item) => (newValue += item.letter));
 
   return {
-    newHTML,
+    newHTML: letterArray,
     newValue,
     newLength: letterArray.length,
     error

@@ -8,7 +8,7 @@ import DynamicInput from './DynamicInput';
 const Comparison = ({ value = '', valueToCompare, getValue, ...props }) => {
   const { id, label, error } = { ...props };
   const [newValue, setNewValue] = useState(value);
-  const [dataValue, setDataValue] = useState(value ? genDynHTML(value, valueToCompare) : '');
+  const [dataValue, setDataValue] = useState(value ? genDynHTML(value, valueToCompare) : {});
   const [errorCompare, setErrorCompare] = useState(dataValue.error);
   const idDivInput = valueToCompare + '-div';
   const [cursorPos, setCursorPos] = useState(0);
