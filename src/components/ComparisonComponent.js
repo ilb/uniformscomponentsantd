@@ -1,26 +1,30 @@
 import { useState, useEffect } from 'react';
 import { TextField } from 'uniforms-antd';
 import { connectField } from 'uniforms';
-import { getCursorPosition, setCursorPosition, genDynHTML } from '../libs/dynamicInput';
+import { getCursorPosition, genDynHTML } from '../libs/dynamicInput';
 import IconError from '../styles/IconError';
+import DynamicInput from './DynamicInput';
 
-const Comparison = ({ value, valueToCompare, getValue, ...props }) => {
+const Comparison = ({ value = '', valueToCompare, getValue, ...props }) => {
   const { id, label, error } = { ...props };
   const [newValue, setNewValue] = useState(value);
-  const baseData = genDynHTML(value, valueToCompare);
-  const [errorCompare, setErrorCompare] = useState(baseData.error);
-  const idDiv = valueToCompare + '-div';
+  const [dataValue, setDataValue] = useState(value ? genDynHTML(value, valueToCompare) : '');
+  const [errorCompare, setErrorCompare] = useState(dataValue.error);
+  const idDivInput = valueToCompare + '-div';
+  const [cursorPos, setCursorPos] = useState(0);
 
   useEffect(() => {
-    const inputDiv = document.getElementById(idDiv);
+    const inputDiv = document.getElementById(idDivInput);
     inputDiv.addEventListener(
       'input',
       function (e) {
         const text = e.target.innerText;
+
         if (text.trim() === '') {
           setNewValue('');
           getValue('');
           setErrorCompare(true);
+
           return (e.target.innerHTML = '');
         }
 
@@ -30,19 +34,20 @@ const Comparison = ({ value, valueToCompare, getValue, ...props }) => {
             text.substr(0, valueToCompare.length),
             valueToCompare
           );
-          e.target.innerHTML = newHTML;
+
           getValue(newValue);
+          setDataValue({ newHTML, error });
+          setCursorPos(pos > newLength ? newLength : pos);
           setErrorCompare(error);
-          return setCursorPosition(inputDiv, pos > newLength ? newLength : pos);
+          return;
         }
 
         const pos = getCursorPosition(inputDiv);
         const { newHTML, newValue, newLength, error } = genDynHTML(text, valueToCompare);
-        e.target.innerHTML = newHTML;
 
         getValue(newValue);
-        setCursorPosition(inputDiv, pos === newLength ? newLength : pos);
-
+        setDataValue({ newHTML, error });
+        setCursorPos(pos > newLength ? newLength : pos);
         setNewValue(newValue);
         setErrorCompare(error);
       },
@@ -63,16 +68,7 @@ const Comparison = ({ value, valueToCompare, getValue, ...props }) => {
         <div role="cell" className="ant-col ant-form-item-control">
           <div className="ant-form-item-control-input">
             <div className="ant-form-item-control-input-content" style={{ position: 'relative' }}>
-              <div
-                contentEditable="true"
-                suppressContentEditableWarning="true"
-                dangerouslySetInnerHTML={{ __html: baseData.newHTML }}
-                className={
-                  error
-                    ? 'ant-input-affix-wrapper ant-input-affix-wrapper-status-error'
-                    : 'ant-input'
-                }
-                id={idDiv}></div>
+              <DynamicInput id={idDivInput} cursor={cursorPos} value={dataValue.newHTML} />
               {error && (
                 <span
                   className="ant-input-suffix"

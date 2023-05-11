@@ -9,14 +9,16 @@ export const getCursorPosition = (parent) => {
 export const setCursorPosition = (parent, position) => {
   let child = parent.firstChild;
   while (position > 0) {
-    let length = child.textContent.length;
-    if (position > length) {
-      position -= length;
-      child = child.nextSibling;
-    } else {
-      if (child.nodeType == 3) return document.getSelection().collapse(child, position);
-      child = child.firstChild;
-    }
+    if (child != null) {
+      let length = child.textContent.length;
+      if (position > length) {
+        position -= length;
+        child = child.nextSibling;
+      } else {
+        if (child.nodeType == 3) return document.getSelection().collapse(child, position);
+        child = child.firstChild;
+      }
+    } else position -= 1;
   }
 };
 

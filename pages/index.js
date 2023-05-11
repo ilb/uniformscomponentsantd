@@ -7,13 +7,13 @@ export default function page() {
   const schema = {
     type: 'object',
     properties: {
-      login: { title: 'Логин', type: 'string', isNotEmpty: true },
-      name: { title: 'Имя', type: 'string', isNotEmpty: true },
+      login: { title: 'Логин', type: 'string' },
+      name: { title: 'Имя', type: 'string' },
       comparisonField: {
         title: 'Сравнение с test',
         type: 'string'
       },
-      password: { title: 'Пароль', type: 'string', isNotEmpty: true }
+      password: { title: 'Пароль', type: 'string' }
     }
   };
 
