@@ -4,7 +4,7 @@ const DynamicInput = ({ id, cursor, value, ...props }) => {
   let valueHTML = '';
   if (value) {
     value.map((el) => {
-      valueHTML += `<span style="display: inline-block;${el.style}">${el.letter}</span>`;
+      valueHTML += `<span style="display: inline-block;${el.style || ''}">${el.letter}</span>`;
     });
   }
 
