@@ -97,7 +97,7 @@ const Comparison = ({ value = '', valueToCompare, getValue, ...props }) => {
                   className="ant-tooltip-inner"
                   role="tooltip"
                   style={{ color: 'rgba(0, 0, 0, 0.85)', background: 'white' }}>
-                  {valueToCompare}
+                  Возможно допущена ошибка
                 </div>
               </div>
             </div>
