@@ -1,4 +1,5 @@
 import { setCursorPosition } from '../libs/dynamicInput';
+import { useEffect } from 'react';
 
 const DynamicInput = ({ id, cursor, value, ...props }) => {
   let valueHTML = '';
@@ -8,11 +9,11 @@ const DynamicInput = ({ id, cursor, value, ...props }) => {
     });
   }
 
-  if (typeof window !== 'undefined') {
+  useEffect(() => {
     const element = document.getElementById(id);
     element.innerHTML = valueHTML;
     setTimeout(() => setCursorPosition(element, cursor), 0);
-  }
+  });
 
   return (
     <>
