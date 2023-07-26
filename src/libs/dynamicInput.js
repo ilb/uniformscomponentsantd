@@ -34,7 +34,7 @@ export const genDynHTML = (text, compareText) => {
     } else {
       letterArray.push({
         letter: text[i] || '',
-        style: 'color: red;font-weight: bold'
+        style: 'color: orange;font-weight: bold'
       });
       error = true;
     }
