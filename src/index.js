@@ -4,6 +4,7 @@ import localize from 'ajv-i18n';
 import ErrorFormatter from './ErrorFormatter.mjs';
 
 export { default as ComparisonComponent } from './components/ComparisonComponent';
+export { default as Dropdown } from './components/DropdownAntd';
 
 const createValidator = (schema, additionalValidator) => {
   const validator = ajv.compile(schema);
