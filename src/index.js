@@ -6,6 +6,13 @@ import ErrorFormatter from './ErrorFormatter.mjs';
 export { default as ComparisonComponent } from './components/ComparisonComponent';
 export { default as Dropdown } from './components/DropdownAntd';
 
+export { default as CustomAutoField } from './components/CustomAutoField';
+export { default as CustomDateField } from './components/CustomDateField';
+export { default as CustomNumericField } from './components/CustomNumericField';
+export { default as CustomPatternField } from './components/CustomPatternField';
+export { default as CustomSelectField } from './components/CustomSelectField';
+export { default as FilledSelectField } from './components/FilledSelectField';
+
 const createValidator = (schema, additionalValidator) => {
   const validator = ajv.compile(schema);
 
