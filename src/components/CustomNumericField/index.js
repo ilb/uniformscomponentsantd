@@ -41,17 +41,13 @@ const CustomInput = ({
     <NumericFormat
       disabled={disabled}
       onBlur={onBlur}
-      min={field.minLength || -Infinity}
-      max={field.maxLength || Infinity}
+      minLength={field.minLength || -Infinity}
+      maxLength={field.maxLength || Infinity}
       ref={inputRef}
       readOnly={readOnly}
       required={required}
       type={field.uniforms?.type || 'text'}
       value={value ?? ''}
-      // isAllowed={(values) => {
-      //   const { floatValue } = values;
-      //   return floatValue < MAX_LIMIT;
-      // }}
       allowEmptyFormatting={false}
       className={styles.patternInput}
       onValueChange={(values) => {

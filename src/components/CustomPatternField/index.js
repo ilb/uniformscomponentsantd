@@ -41,8 +41,8 @@ const CustomInput = ({
     <PatternFormat
       disabled={disabled}
       onBlur={onBlur}
-      min={field.minimum || -Infinity}
-      max={field.maximum || Infinity}
+      minLength={field.minLength || -Infinity}
+      maxLength={field.maxLength || Infinity}
       ref={inputRef}
       readOnly={readOnly}
       required={required}
