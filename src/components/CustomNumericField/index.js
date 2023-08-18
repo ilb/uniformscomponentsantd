@@ -28,7 +28,6 @@ const CustomInput = ({
   if (onCheckbox) {
     value = '';
   }
-  console.log({ field });
   const handleOnValueChange = (value) => {
     setInputValue(value);
     onChange(value);
