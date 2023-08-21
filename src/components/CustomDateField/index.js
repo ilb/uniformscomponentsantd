@@ -4,8 +4,7 @@ import moment from 'moment';
 import styles from './index.module.scss';
 
 const CustomDateField = connectField(
-  ({ value, onChange, required, error, label, id, ...props }) => {
-    const dateFormat = 'YYYY-MM-DD';
+  ({ value, onChange, required, error, label, id, dateFormat = 'DD.MM.YYYY', ...props }) => {
 
     return (
       <Form.Item required={required} label={label} htmlFor={id} className={styles.dateField}>
@@ -21,7 +20,7 @@ const CustomDateField = connectField(
             }
             onChange(value);
           }}
-          format="DD.MM.YYYY"
+          format={dateFormat}
           className={props.validateStatus && styles.input}
         />
         {error && (

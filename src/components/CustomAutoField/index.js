@@ -27,6 +27,16 @@ const CustomField = (props) => {
   return (
     <Field
       {...props}
+      onInput={(event) => {
+        if (props.capitalize) {
+          let target = event.target;
+          let p = target.selectionStart;
+          target.value = target.value.toUpperCase();
+          target.setSelectionRange(p, p);
+        }
+
+        props.onInput && props.onInput(event.target.value);
+      }}
       placeholder={props?.field?.uniforms?.placeholder || ''}
       name=""
     />

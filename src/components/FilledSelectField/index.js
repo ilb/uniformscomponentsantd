@@ -1,5 +1,5 @@
-import { SelectField } from 'uniforms-antd';
 import { useEffect, useState } from 'react';
+import CustomAutoField from '../CustomAutoField';
 
 const Index = ({ options, showSearch = true, ...props }) => {
   const [_options, setOptions] = useState(options);
@@ -9,7 +9,7 @@ const Index = ({ options, showSearch = true, ...props }) => {
   }, [options]);
 
   return (
-    <SelectField
+    <CustomAutoField
       {...props}
       onSearch={(value) => {
         value = value.trim();

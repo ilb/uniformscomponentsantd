@@ -33,7 +33,7 @@ export default function page() {
         schema={createSchemaBridge(schema)}
         onSubmit={(data) => alert(JSON.stringify(data))}>
         <AutoField name="login" />
-        <AutoField name="name" />
+        <CustomAutoField capitalize name="name" />
         <ComparisonComponent
           valueToCompare={'test'}
           name="comparisonField"
