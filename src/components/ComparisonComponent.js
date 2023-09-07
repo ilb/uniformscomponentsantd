@@ -4,6 +4,7 @@ import { connectField } from 'uniforms';
 import { getCursorPosition, genDynHTML } from '../libs/dynamicInput';
 import IconError from '../styles/IconError';
 import DynamicInput from './DynamicInput';
+import { Form } from 'antd';
 
 const Comparison = ({ value = '', valueToCompare, getValue, ...props }) => {
   const { id, label, error } = { ...props };
@@ -57,61 +58,58 @@ const Comparison = ({ value = '', valueToCompare, getValue, ...props }) => {
 
   return (
     <>
-      <div
-        role="row"
-        className="ant-row ant-form-item ant-form-item-with-help ant-form-item-has-feedback ant-form-item-has-error">
-        <div role="cell" className="ant-col ant-form-item-label">
-          <label htmlFor={id}>
-            <span>{label}</span>
-          </label>
-        </div>
-        <div role="cell" className="ant-col ant-form-item-control">
-          <div className="ant-form-item-control-input">
-            <div className="ant-form-item-control-input-content" style={{ position: 'relative' }}>
-              <DynamicInput id={idDivInput} cursor={cursorPos} value={dataValue.newHTML} />
-              {error && (
-                <span
-                  className="ant-input-suffix"
-                  style={{ position: 'absolute', right: '12px', top: '5px' }}>
-                  <span className="ant-form-item-feedback-icon ant-form-item-feedback-icon-error">
-                    <span
-                      role="img"
-                      aria-label="close-circle"
-                      className="anticon anticon-close-circle">
-                      <IconError />
+      <Form.Item {...props} >
+        <div
+          role="row"
+          className="ant-row ant-form-item ant-form-item-with-help ant-form-item-has-feedback ant-form-item-has-error">
+          <div role="cell" className="ant-col ant-form-item-control">
+            <div className="ant-form-item-control-input">
+              <div className="ant-form-item-control-input-content" style={{ position: 'relative' }}>
+                <DynamicInput id={idDivInput} cursor={cursorPos} value={dataValue.newHTML} />
+                {error && (
+                  <span
+                    className="ant-input-suffix"
+                    style={{ position: 'absolute', right: '12px', top: '5px' }}>
+                    <span className="ant-form-item-feedback-icon ant-form-item-feedback-icon-error">
+                      <span
+                        role="img"
+                        aria-label="close-circle"
+                        className="anticon anticon-close-circle">
+                        <IconError />
+                      </span>
                     </span>
                   </span>
-                </span>
+                )}
+              </div>
+            </div>
+            {errorCompare && (
+              <div className="ant-tooltip ant-tooltip-placement-bottomLeft " style={{ top: '30px' }}>
+                <div className="ant-tooltip-content">
+                  <div className="ant-tooltip-arrow">
+                    <span
+                      className="ant-tooltip-arrow-content"
+                      style={{ '--antd-arrow-background-color': 'white' }}></span>
+                  </div>
+                  <div
+                    className="ant-tooltip-inner"
+                    role="tooltip"
+                    style={{ color: 'rgba(0, 0, 0, 0.85)', background: 'white' }}>
+                    Возможно допущена ошибка
+                  </div>
+                </div>
+              </div>
+            )}
+            <div className="ant-form-item-explain ant-form-item-explain-connected">
+              {error && (
+                <div role="alert" className="ant-form-item-explain-error">
+                  {error?.message || 'Ошибка'}
+                </div>
               )}
             </div>
           </div>
-          {errorCompare && (
-            <div className="ant-tooltip ant-tooltip-placement-bottomLeft " style={{ top: '30px' }}>
-              <div className="ant-tooltip-content">
-                <div className="ant-tooltip-arrow">
-                  <span
-                    className="ant-tooltip-arrow-content"
-                    style={{ '--antd-arrow-background-color': 'white' }}></span>
-                </div>
-                <div
-                  className="ant-tooltip-inner"
-                  role="tooltip"
-                  style={{ color: 'rgba(0, 0, 0, 0.85)', background: 'white' }}>
-                  Возможно допущена ошибка
-                </div>
-              </div>
-            </div>
-          )}
-          <div className="ant-form-item-explain ant-form-item-explain-connected">
-            {error && (
-              <div role="alert" className="ant-form-item-explain-error">
-                {error?.message || 'Ошибка'}
-              </div>
-            )}
-          </div>
+          <TextField {...props} name="" value={newValue} hidden label={false} />
         </div>
-        <TextField {...props} name="" value={newValue} hidden label={false} />
-      </div>
+      </Form.Item>
     </>
   );
 };
