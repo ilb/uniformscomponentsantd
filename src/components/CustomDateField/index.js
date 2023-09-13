@@ -2,21 +2,29 @@ import { connectField } from 'uniforms';
 import { DatePicker, Form } from 'antd';
 import moment from 'moment';
 import styles from './index.module.scss';
+import IMask from 'imask';
 
 const CustomDateField = connectField(
   ({ value, onChange, required, error, label, id, dateFormat = 'DD.MM.YYYY', ...props }) => {
+    const masked = IMask.createMask({ mask: Date });
+
+    const maskValue = (event) => {
+      masked.resolve(event.target.value);
+      event.target.value = masked.value;
+    };
 
     return (
       <Form.Item required={required} label={label} htmlFor={id} className={styles.dateField}>
         <DatePicker
           showTime={false}
           {...props}
+          onKeyDown={maskValue}
           id={id}
           style={{ width: '100%' }}
-          value={value ? moment(value, dateFormat) : undefined}
+          value={value ? moment(value) : undefined}
           onChange={(value) => {
             if (value) {
-              value = value.format(dateFormat);
+              value = value.toISOString();
             }
             onChange(value);
           }}
