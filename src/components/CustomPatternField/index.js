@@ -62,7 +62,7 @@ const CustomInput = ({
     />
   );
   return (
-    <Form.Item classnames={classnames} required={required} label={label}>
+    <Form.Item className={styles.numericField}  required={required} label={label}>
       <div
         className={classnames(
           'ui',
