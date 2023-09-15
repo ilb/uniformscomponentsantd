@@ -58,7 +58,7 @@ const CustomInput = ({
     />
   );
   return (
-    <Form.Item classnames={classnames} required={required} label={label}>
+    <Form.Item className={styles.patternField} required={required} label={label}>
       <div
         className={classnames(
           'ui',
