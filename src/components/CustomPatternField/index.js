@@ -20,7 +20,8 @@ const CustomInput = ({
   onBlur,
   validateStatus,
   help,
-  onCheckbox
+  onCheckbox,
+  onInput
 }) => {
   const [inputValue, setInputValue] = useState(value || '');
   const inputRef = useRef();
@@ -50,6 +51,7 @@ const CustomInput = ({
       value={value ?? ''}
       allowEmptyFormatting={false}
       className={styles.patternInput}
+      onInput={onInput}
       onValueChange={(values) => {
         if (field.uniforms.maskedValue) {
           handleOnValueChange(values.formattedValue);
