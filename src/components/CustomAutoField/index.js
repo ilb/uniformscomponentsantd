@@ -34,7 +34,12 @@ const CustomField = (props) => {
           target.value = target.value.toUpperCase();
           target.setSelectionRange(p, p);
         }
-
+        if (props.field?.uniforms?.max && Number(event.target.value) > props.field?.uniforms?.max) {
+          event.target.value = props.field?.uniforms.max;
+        }
+        if (props.field?.uniforms?.min && Number(event.target.value) < props.field?.uniforms?.min) {
+          event.target.value = props.field?.uniforms.min;
+        }
         props.onInput && props.onInput(event.target.value);
       }}
       placeholder={props?.field?.uniforms?.placeholder || ''}
