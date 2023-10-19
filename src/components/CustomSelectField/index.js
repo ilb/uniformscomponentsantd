@@ -11,11 +11,12 @@ const CustomSelectField = ({
   withEmptyOption = false,
   ...props
 }) => {
+  let emptyOption = null;
   if (withEmptyOption) {
-    options.unshift({
+    emptyOption = {
       label: withEmptyOption?.label ?? 'Ничего не выбрано',
       value: withEmptyOption.value ?? ''
-    });
+    };
   }
 
   return (
@@ -26,7 +27,7 @@ const CustomSelectField = ({
         onAfterChange && onAfterChange(...props);
       }}
       showSearch={showSearch}
-      options={options}
+      options={[...([emptyOption] || []), ...options]}
       showInlineError
       onSearch={(query) => onSearch && onSearch(query)}
       filterOption={() => true}
