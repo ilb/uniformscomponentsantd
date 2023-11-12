@@ -9,6 +9,7 @@ const CustomSelectField = ({
   onAfterChange,
   onChange,
   withEmptyOption = false,
+  filterOption = () => true,
   ...props
 }) => {
   let emptyOption = null;
@@ -30,7 +31,7 @@ const CustomSelectField = ({
       options={[...([emptyOption] || []), ...options]}
       showInlineError
       onSearch={(query) => onSearch && onSearch(query)}
-      filterOption={() => true}
+      filterOption={filterOption}
       value={value}
       name=""
     />
