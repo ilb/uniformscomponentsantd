@@ -28,7 +28,7 @@ const CustomSelectField = ({
         onAfterChange && onAfterChange(...props);
       }}
       showSearch={showSearch}
-      options={[...([emptyOption] || []), ...options]}
+      options={emptyOption ? [emptyOption, ...options] : options}
       showInlineError
       onSearch={(query) => onSearch && onSearch(query)}
       filterOption={filterOption}
