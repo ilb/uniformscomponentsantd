@@ -24,7 +24,7 @@ const CustomDateField = connectField(
           value={value ? moment.utc(value) : undefined}
           onChange={(value) => {
             if (value) {
-              value = value.toISOString();
+              value = new Date(value.format('YYYY-MM-DD'));
             }
             onChange(value);
           }}
