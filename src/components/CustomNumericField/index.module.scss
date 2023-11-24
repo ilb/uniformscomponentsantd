@@ -1,10 +1,10 @@
 .patternPicker {
   width: 100%;
-  padding: 0 !important;
+  padding: 0;
 }
 
 .patternInput {
-  padding: 4px 11px 4px !important;
+  padding: 4px 11px 4px;
 }
 
 .patternField {
@@ -13,16 +13,16 @@
 }
 
 .patternInput[disabled] {
-  color: rgba(0, 0, 0, 0.25) !important;
-  background-color: #f5f5f5 !important;
-  border-color: #d9d9d9 !important;
-  box-shadow: none !important;
-  opacity: 1 !important;
+  color: rgba(0, 0, 0, 0.25);
+  background-color: #f5f5f5;
+  border-color: #d9d9d9;
+  box-shadow: none;
+  opacity: 1;
 }
 
 .patternInput[disabled]:hover {
-  cursor: not-allowed !important;
-  border-color: #d9d9d9 !important;
+  cursor: not-allowed;
+  border-color: #d9d9d9;
 }
 
 .helpText {
@@ -41,5 +41,5 @@
 }
 
 .warningInput {
-  border: 1px solid #faad14 !important;
+  border: 1px solid #faad14;
 }
