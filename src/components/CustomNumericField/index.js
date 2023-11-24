@@ -21,7 +21,8 @@ const CustomInput = ({
   validateStatus,
   help,
   onCheckbox,
-  onInput
+  onInput,
+  className
 }) => {
   const [inputValue, setInputValue] = useState(value || '');
   const inputRef = useRef();
@@ -49,7 +50,7 @@ const CustomInput = ({
       type={field.uniforms?.type || 'text'}
       value={value ?? ''}
       allowEmptyFormatting={false}
-      className={styles.patternInput}
+      className={className ? 'ant-input' : className}
       onInput={onInput}
       onValueChange={(values) => {
         let value = field.type === 'string' ? values.value : values.floatValue;

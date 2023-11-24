@@ -21,7 +21,8 @@ const CustomInput = ({
   validateStatus,
   help,
   onCheckbox,
-  onInput
+  onInput,
+  className
 }) => {
   const [inputValue, setInputValue] = useState(value || '');
   const inputRef = useRef();
@@ -50,7 +51,7 @@ const CustomInput = ({
       type={field.uniforms?.type || 'text'}
       value={value ?? ''}
       allowEmptyFormatting={false}
-      className={styles.patternInput}
+      className={className ? 'ant-input' : className}
       onInput={onInput}
       onValueChange={(values) => {
         if (field.uniforms.maskedValue) {
@@ -64,7 +65,7 @@ const CustomInput = ({
     />
   );
   return (
-    <Form.Item className={styles.numericField}  required={required} label={label}>
+    <Form.Item className={styles.numericField} required={required} label={label}>
       <div
         className={classnames(
           'ui',
