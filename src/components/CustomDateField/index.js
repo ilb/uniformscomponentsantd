@@ -21,10 +21,10 @@ const CustomDateField = connectField(
           onKeyDown={maskValue}
           id={id}
           style={{ width: '100%' }}
-          value={value ? moment(value) : undefined}
+          value={value ? moment.utc(value) : undefined}
           onChange={(value) => {
             if (value) {
-              value = value.toISOString();
+              value = new Date(value.format('YYYY-MM-DD'));
             }
             onChange(value);
           }}

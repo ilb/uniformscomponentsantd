@@ -20,7 +20,8 @@ const CustomInput = ({
   onBlur,
   validateStatus,
   help,
-  onCheckbox
+  onCheckbox,
+  onInput
 }) => {
   const [inputValue, setInputValue] = useState(value || '');
   const inputRef = useRef();
@@ -49,6 +50,7 @@ const CustomInput = ({
       value={value ?? ''}
       allowEmptyFormatting={false}
       className={styles.patternInput}
+      onInput={onInput}
       onValueChange={(values) => {
         let value = field.type === 'string' ? values.value : values.floatValue;
 
@@ -58,7 +60,7 @@ const CustomInput = ({
     />
   );
   return (
-    <Form.Item classnames={classnames} required={required} label={label}>
+    <Form.Item className={styles.patternField} required={required} label={label}>
       <div
         className={classnames(
           'ui',
