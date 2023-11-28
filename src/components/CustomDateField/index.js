@@ -9,8 +9,34 @@ const CustomDateField = connectField(
     const masked = IMask.createMask({ mask: Date });
 
     const maskValue = (event) => {
-      masked.resolve(event.target.value);
-      event.target.value = masked.value;
+      if (countDots(event.target.value) === 2) {
+        return;
+      }
+
+      const text = event.target;
+
+      if (isNumber(event.key) && [2, 5].includes((event.target.value + event.key).length)) {
+        let string = text.value;
+        let start = text.selectionStart;
+        let end = text.selectionEnd + 1;
+        text.value = string.slice(0, end) + event.key + '.';
+        text.focus();
+        let position = start;
+        text.setSelectionRange(position, position);
+        event.target.selectionStart = event.target.selectionEnd = event.target.value.length + 1;
+        event.preventDefault();
+      } else {
+        masked.resolve(event.target.value);
+        event.target.value = masked.value;
+      }
+    };
+
+    function isNumber(str) {
+      return /\d/.test(str);
+    }
+
+    const countDots = (str) => {
+      return str.split('').filter((c) => c === '.').length;
     };
 
     return (

@@ -24,14 +24,12 @@ const CustomInput = ({
   onInput,
   className
 }) => {
-  const [inputValue, setInputValue] = useState(value || '');
   const inputRef = useRef();
 
   if (onCheckbox) {
     value = '';
   }
   const handleOnValueChange = (value) => {
-    setInputValue(value);
     onChange(value);
     onAfterChange && onAfterChange(value);
   };
@@ -50,7 +48,7 @@ const CustomInput = ({
       type={field.uniforms?.type || 'text'}
       value={value ?? ''}
       allowEmptyFormatting={false}
-      className={className ? 'ant-input' : className}
+      className={classnames(styles.patternInput, className || 'ant-input')}
       onInput={onInput}
       onValueChange={(values) => {
         let value = field.type === 'string' ? values.value : values.floatValue;
