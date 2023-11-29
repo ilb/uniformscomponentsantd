@@ -48,7 +48,7 @@ const CustomInput = ({
       type={field.uniforms?.type || 'text'}
       value={value ?? ''}
       allowEmptyFormatting={false}
-      className={classnames(styles.patternInput, className || 'ant-input')}
+      className={className ? className : styles.patternInput}
       onInput={onInput}
       onValueChange={(values) => {
         let value = field.type === 'string' ? values.value : values.floatValue;
