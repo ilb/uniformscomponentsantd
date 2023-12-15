@@ -22,6 +22,14 @@ export default function page() {
         dropdownSearchField: {
           title: 'Селект с поиском',
           type: 'string'
+        },
+        patternTextField: {
+          title: 'Номер ПТС',
+          type: 'string',
+          uniforms: {
+            pattern: '** ** ******',
+            caseMode: 'upperCase'
+          }
         }
       }
     };
@@ -57,6 +65,7 @@ export default function page() {
             ];
           }}
         />
+        <CustomAutoField name='patternTextField' />
         <SubmitField value="Войти" />
       </AutoForm>
     );

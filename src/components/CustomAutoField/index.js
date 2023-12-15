@@ -4,6 +4,7 @@ import { AutoField } from 'uniforms-antd';
 import CustomPatternField from '../CustomPatternField';
 import CustomNumericField from '../CustomNumericField';
 import CustomDateField from '../CustomDateField';
+import CustomInputField from '../CustomInputField';
 
 /**
  * Кастомное поле
@@ -13,9 +14,11 @@ import CustomDateField from '../CustomDateField';
  */
 const CustomField = (props) => {
   let Field = AutoField;
-  // console.log(props);
   if (props.field?.uniforms?.format) {
     Field = CustomPatternField;
+  }
+  if (props.field?.uniforms?.pattern) {
+    Field = CustomInputField;
   }
   if (props.field?.format === 'date') {
     Field = CustomDateField;
