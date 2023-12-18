@@ -17,6 +17,7 @@ const CustomInput = ({
   validateStatus,
   help,
   onCheckbox,
+  ...props
 }) => {
   const inputRef = useRef();
 
@@ -56,8 +57,9 @@ const CustomInput = ({
     />
   );
   return (
-    <Form.Item className={styles.patternField} required={required} label={label}>
+    <Form.Item className={styles.patternField} required={required} label={label} {...props} >
       <div
+        style={{ width: '100%' }}
         className={classnames(
           'ui',
           {
