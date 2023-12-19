@@ -8,7 +8,6 @@ import styles from './index.module.scss';
 const CustomInput = ({
   label,
   additionalLabel,
-  value,
   field,
   disabled,
   error,
@@ -20,10 +19,7 @@ const CustomInput = ({
   ...props
 }) => {
   const inputRef = useRef();
-
-  if (onCheckbox) {
-    value = '';
-  }
+  const [value, setValue] = useState();
 
   const inputAdditionalLabel = additionalLabel || field.uniforms?.additionalLabel;
   const mask = field.uniforms.pattern;
@@ -53,6 +49,10 @@ const CustomInput = ({
       onInput={(event) => {
         casedText(event);
       }}
+      onChange={(event) => {
+        setValue(event.target.value);
+      }}
+      value={value}
       {...patternFormatProps}
     />
   );
