@@ -45,7 +45,7 @@ export default function page() {
         <ComparisonComponent
           valueToCompare={'test'}
           name="comparisonField"
-          onChange={(value) => console.log('Получено с поля: ' + value)}
+          onChange={() => {}}
           caseMode="upperCase"
           value={'text'}
         />
