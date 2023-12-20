@@ -64,7 +64,7 @@ const Comparison = ({ value = '', valueToCompare, getValue, ...props }) => {
           className="ant-row ant-form-item ant-form-item-with-help ant-form-item-has-feedback ant-form-item-has-error">
           <div role="cell" className="ant-col ant-form-item-control">
             <div className="ant-form-item-control-input">
-              <div className="ant-form-item-control-input-content" style={{ position: 'relative' }}>
+              <div className="ant-form-item-control-input-content" style={{ position: 'relative', height: '100%' }}>
                 <DynamicInput id={idDivInput} cursor={cursorPos} value={dataValue.newHTML} />
                 {error && (
                   <span

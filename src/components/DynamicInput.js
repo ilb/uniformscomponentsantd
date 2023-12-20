@@ -22,6 +22,7 @@ const DynamicInput = ({ id, cursor, value, ...props }) => {
         suppressContentEditableWarning="true"
         dangerouslySetInnerHTML={{ __html: valueHTML }}
         className="ant-input"
+        style={{ height: '100%' }}
         id={id}
         {...props}></div>
     </>
