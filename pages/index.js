@@ -45,7 +45,8 @@ export default function page() {
         <ComparisonComponent
           valueToCompare={'test'}
           name="comparisonField"
-          getValue={(value) => console.log('Получено с поля: ' + value)}
+          onChange={() => {}}
+          caseMode="upperCase"
           value={'text'}
         />
         <AutoField name="password" type="password" />

@@ -6,7 +6,7 @@ import IconError from '../styles/IconError';
 import DynamicInput from './DynamicInput';
 import { Form } from 'antd';
 
-const Comparison = ({ value = '', valueToCompare, getValue, ...props }) => {
+const Comparison = ({ value = '', valueToCompare, getValue, onChange, caseMode, ...props }) => {
   const { id, label, error } = { ...props };
   const [newValue, setNewValue] = useState(value);
   const [dataValue, setDataValue] = useState(value ? genDynHTML(value, valueToCompare) : {});
@@ -23,7 +23,6 @@ const Comparison = ({ value = '', valueToCompare, getValue, ...props }) => {
 
         if (text.trim() === '') {
           setNewValue('');
-          getValue('');
           setErrorCompare(true);
 
           return (e.target.innerHTML = '');
@@ -36,7 +35,6 @@ const Comparison = ({ value = '', valueToCompare, getValue, ...props }) => {
             valueToCompare
           );
 
-          getValue(newValue);
           setDataValue({ newHTML, error });
           setCursorPos(pos > newLength ? newLength : pos);
           setErrorCompare(error);
@@ -46,7 +44,6 @@ const Comparison = ({ value = '', valueToCompare, getValue, ...props }) => {
         const pos = getCursorPosition(inputDiv);
         const { newHTML, newValue, newLength, error } = genDynHTML(text, valueToCompare);
 
-        getValue(newValue);
         setDataValue({ newHTML, error });
         setCursorPos(pos > newLength ? newLength : pos);
         setNewValue(newValue);
@@ -64,8 +61,8 @@ const Comparison = ({ value = '', valueToCompare, getValue, ...props }) => {
           className="ant-row ant-form-item ant-form-item-with-help ant-form-item-has-feedback ant-form-item-has-error">
           <div role="cell" className="ant-col ant-form-item-control">
             <div className="ant-form-item-control-input">
-              <div className="ant-form-item-control-input-content" style={{ position: 'relative' }}>
-                <DynamicInput id={idDivInput} cursor={cursorPos} value={dataValue.newHTML} />
+              <div className="ant-form-item-control-input-content" style={{ position: 'relative', height: '100%' }}>
+                <DynamicInput id={idDivInput} cursor={cursorPos} value={dataValue.newHTML} caseMode={caseMode} onChange={onChange} />
                 {error && (
                   <span
                     className="ant-input-suffix"
@@ -107,7 +104,6 @@ const Comparison = ({ value = '', valueToCompare, getValue, ...props }) => {
               )}
             </div>
           </div>
-          <TextField {...props} name="" value={newValue} hidden label={false} />
         </div>
       </Form.Item>
     </>
