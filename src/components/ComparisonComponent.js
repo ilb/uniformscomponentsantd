@@ -1,18 +1,17 @@
 import { useState, useEffect } from 'react';
-import { TextField } from 'uniforms-antd';
 import { connectField } from 'uniforms';
 import { getCursorPosition, genDynHTML } from '../libs/dynamicInput';
 import IconError from '../styles/IconError';
 import DynamicInput from './DynamicInput';
 import { Form } from 'antd';
 
-const Comparison = ({ value = '', valueToCompare, getValue, onChange, caseMode, ...props }) => {
-  const { id, label, error } = { ...props };
+const Comparison = ({ value = '', valueToCompare, onChange, caseMode, ...props }) => {
+  const { error } = { ...props };
   const [newValue, setNewValue] = useState(value);
   const [dataValue, setDataValue] = useState(value ? genDynHTML(value, valueToCompare) : {});
   const [errorCompare, setErrorCompare] = useState(dataValue.error);
   const idDivInput = valueToCompare + '-div';
-  const [cursorPos, setCursorPos] = useState(0);
+  const [cursorPos, setCursorPos] = useState(value?.length || 0);
 
   useEffect(() => {
     const inputDiv = document.getElementById(idDivInput);
@@ -22,10 +21,11 @@ const Comparison = ({ value = '', valueToCompare, getValue, onChange, caseMode, 
         const text = e.target.innerText;
 
         if (text.trim() === '') {
-          setNewValue('');
+          setNewValue(undefined);
+          setDataValue({ newHTML: '' });
           setErrorCompare(true);
 
-          return (e.target.innerHTML = '');
+          return;
         }
 
         if (text.length > valueToCompare.length) {
@@ -55,7 +55,7 @@ const Comparison = ({ value = '', valueToCompare, getValue, onChange, caseMode, 
 
   return (
     <>
-      <Form.Item {...props} >
+      <Form.Item {...props}>
         <div
           role="row"
           className="ant-row ant-form-item ant-form-item-with-help ant-form-item-has-feedback ant-form-item-has-error">
@@ -79,7 +79,7 @@ const Comparison = ({ value = '', valueToCompare, getValue, onChange, caseMode, 
                 )}
               </div>
             </div>
-            {errorCompare && (
+            {!!newValue && errorCompare && (
               <div className="ant-tooltip ant-tooltip-placement-bottomLeft " style={{ top: '30px' }}>
                 <div className="ant-tooltip-content">
                   <div className="ant-tooltip-arrow">

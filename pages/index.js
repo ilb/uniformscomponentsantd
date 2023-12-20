@@ -43,9 +43,8 @@ export default function page() {
         <AutoField name="login" />
         <CustomAutoField capitalize name="name" />
         <ComparisonComponent
-          valueToCompare={'test'}
+          valueToCompare={'TEXT'}
           name="comparisonField"
-          onChange={() => {}}
           caseMode="upperCase"
           value={'text'}
         />

@@ -26,7 +26,7 @@ export const genDynHTML = (text, compareText) => {
   let letterArray = [];
   let error = false;
 
-  for (let i = 0; i < compareText.length; i++) {
+  for (let i = 0; i < text.length; i++) {
     if (text[i] && text[i] === compareText[i]) {
       letterArray.push({
         letter: text[i] || ''

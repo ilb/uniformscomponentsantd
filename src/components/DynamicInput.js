@@ -6,13 +6,13 @@ const DynamicInput = ({ id, cursor, value, onChange, caseMode, ...props }) => {
   const casedText = (text) => {
     if (caseMode === 'upperCase') {
       return text.toUpperCase();
-    };
+    }
     if (caseMode === 'lowerCase') {
       return text.toLowerCase();
     }
     return text;
   };
-  
+
   if (value) {
     value.map((el) => {
       valueHTML += `<span style="display: inline-block;${el.style || ''}">${casedText(el.letter)}</span>`;
@@ -32,7 +32,7 @@ const DynamicInput = ({ id, cursor, value, onChange, caseMode, ...props }) => {
         suppressContentEditableWarning="true"
         dangerouslySetInnerHTML={{ __html: valueHTML }}
         className="ant-input"
-        style={{ height: '100%' }}
+        style={{ height: 'fit-content' }}
         id={id}
         onInput={(e) => {
           onChange(e.currentTarget.textContent)
