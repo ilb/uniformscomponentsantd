@@ -37,7 +37,12 @@ const DynamicInput = ({ id, cursor, value, onChange, caseMode, ...props }) => {
         style={{ height: '100%' }}
         id={id}
         onInput={(e) => {
-          onChange(casedText(e.currentTarget.textContent));
+          const text = e.currentTarget.textContent;
+          if (props?.maxLength < text.length || props?.maxlength < text.length) {
+            e.preventDefault();
+            return;
+          }
+          onChange(casedText(text));
         }}
         {...props}></div>
     </>

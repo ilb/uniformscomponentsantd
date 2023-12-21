@@ -26,8 +26,9 @@ const Comparison = ({ value = '', valueToCompare, onChange, caseMode, ...props }
           text = text.toLowerCase();
         }
 
-        if (props?.maxLength === text.length || props?.maxlength === text.length) {
-          return;
+        if (props?.maxLength < text.length || props?.maxlength < text.length) {
+          e.preventDefault();
+          text = text.slice(0, props?.maxLength || props?.maxlength);
         }
 
         if (text.trim() === '') {
@@ -59,7 +60,7 @@ const Comparison = ({ value = '', valueToCompare, onChange, caseMode, ...props }
           <div role="cell" className="ant-col ant-form-item-control">
             <div className="ant-form-item-control-input">
               <div className="ant-form-item-control-input-content" style={{ position: 'relative', height: '100%' }}>
-                <DynamicInput id={idDivInput} cursor={cursorPos} value={dataValue.newHTML} caseMode={caseMode} onChange={onChange} />
+                <DynamicInput {...props} id={idDivInput} cursor={cursorPos} value={dataValue.newHTML} caseMode={caseMode} onChange={onChange} />
                 {error && (
                   <span
                     className="ant-input-suffix"
