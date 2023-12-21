@@ -28,19 +28,6 @@ const Comparison = ({ value = '', valueToCompare, onChange, caseMode, ...props }
           return;
         }
 
-        if (text.length > valueToCompare.length) {
-          const pos = getCursorPosition(inputDiv);
-          const { newHTML, newValue, newLength, error } = genDynHTML(
-            text.substr(0, valueToCompare.length),
-            valueToCompare
-          );
-
-          setDataValue({ newHTML, error });
-          setCursorPos(pos > newLength ? newLength : pos);
-          setErrorCompare(error);
-          return;
-        }
-
         const pos = getCursorPosition(inputDiv);
         const { newHTML, newValue, newLength, error } = genDynHTML(text, valueToCompare);
 
