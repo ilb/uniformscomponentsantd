@@ -18,7 +18,17 @@ const Comparison = ({ value = '', valueToCompare, onChange, caseMode, ...props }
     inputDiv.addEventListener(
       'input',
       function (e) {
-        const text = e.target.innerText;
+        let text = e.target.innerText;
+        if (caseMode === 'upperCase') {
+          text = text.toUpperCase();
+        }
+        if (caseMode === 'lowerCase') {
+          text = text.toLowerCase();
+        }
+
+        if (props?.maxLength < text.length || props?.maxlength < text.length) {
+          return;
+        }
 
         if (text.trim() === '') {
           setNewValue(undefined);
