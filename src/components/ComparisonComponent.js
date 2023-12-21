@@ -26,7 +26,7 @@ const Comparison = ({ value = '', valueToCompare, onChange, caseMode, ...props }
           text = text.toLowerCase();
         }
 
-        if (props?.maxLength < text.length || props?.maxlength < text.length) {
+        if (props?.maxLength === text.length || props?.maxlength === text.length) {
           return;
         }
 
