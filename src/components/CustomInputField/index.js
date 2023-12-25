@@ -29,6 +29,7 @@ const CustomInput = ({
   const mask = field.uniforms.pattern;
   const maskChar = field.uniforms.mask || ' ';
   const caseMode = field.uniforms.caseMode;
+  const formatChars = field.uniforms.formatChars;
 
   const casedText = (event) => {
     if (caseMode === 'upperCase') {
@@ -50,6 +51,7 @@ const CustomInput = ({
     <ReactInputMask
       mask={mask}
       maskChar={maskChar}
+      formatChars={formatChars}
       onInput={(event) => {
         casedText(event);
       }}

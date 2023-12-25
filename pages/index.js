@@ -28,7 +28,10 @@ export default function page() {
           type: 'string',
           uniforms: {
             pattern: '** ** ******',
-            caseMode: 'upperCase'
+            caseMode: 'upperCase',
+            formatChars: {
+              '*': '[A-Za-zА-Яа-я0-9]'
+            },
           }
         }
       }
