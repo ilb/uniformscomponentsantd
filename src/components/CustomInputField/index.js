@@ -17,6 +17,7 @@ const CustomInput = ({
   validateStatus,
   help,
   onCheckbox,
+  onChange,
   ...props
 }) => {
   const inputRef = useRef();
@@ -32,18 +33,18 @@ const CustomInput = ({
   const formatChars = field.uniforms.formatChars;
 
   const casedText = (event) => {
+    let target = event.target;
     if (caseMode === 'upperCase') {
-      let target = event.target;
       let p = target.selectionStart;
       target.value = target.value.toUpperCase();
       target.setSelectionRange(p, p);
-    };
+    }
     if (caseMode === 'lowerCase') {
-      let target = event.target;
       let p = target.selectionStart;
       target.value = target.value.toLowerCase();
       target.setSelectionRange(p, p);
     }
+    onChange(target.value);
   };
 
   const patternFormatProps = field.uniforms || {};
