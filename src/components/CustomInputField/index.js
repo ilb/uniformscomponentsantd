@@ -57,6 +57,7 @@ const CustomInput = ({
         casedText(event);
       }}
       className={styles.patternInput}
+      value={value}
       {...patternFormatProps}
     />
   );
