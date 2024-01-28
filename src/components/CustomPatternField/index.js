@@ -22,7 +22,8 @@ const CustomInput = ({
   help,
   onCheckbox,
   onInput,
-  className
+  className,
+  id
 }) => {
   const inputRef = useRef();
 
@@ -39,6 +40,7 @@ const CustomInput = ({
   const numericFormatProps = field.uniforms || {};
   const inputElement = (
     <PatternFormat
+      id={id}
       disabled={disabled}
       onBlur={onBlur}
       minLength={field.minLength || -Infinity}
@@ -63,7 +65,7 @@ const CustomInput = ({
     />
   );
   return (
-    <Form.Item className={styles.numericField} required={required} label={label}>
+    <Form.Item className={styles.numericField} required={required} label={label} htmlFor={id}>
       <div
         className={classnames(
           'ui',
