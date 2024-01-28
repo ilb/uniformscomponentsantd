@@ -24,7 +24,7 @@ export default function page() {
           type: 'string'
         },
         patternTextField: {
-          title: 'Номер ПТС',
+          title: 'Инпут с паттерном',
           type: 'string',
           uniforms: {
             pattern: '** ** ******',
@@ -33,9 +33,18 @@ export default function page() {
               '*': '[A-Za-zА-Яа-я0-9]'
             },
           }
-        }
-      }
+        },
+        vehiclePassportNumber: {
+          title: 'Номер ПТС',
+          type: 'string',
+        },
+      },
+      required: [
+        'vehiclePassportNumber'
+      ]
     };
+
+    const isEpts = false;
 
     return (
       <AutoForm
@@ -69,6 +78,7 @@ export default function page() {
           }}
         />
         <CustomAutoField name='patternTextField' />
+        <CustomAutoField name='vehiclePassportNumber' isEpts={isEpts} />
         <SubmitField value="Войти" />
       </AutoForm>
     );
