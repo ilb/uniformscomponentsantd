@@ -5,6 +5,7 @@ import CustomPatternField from '../CustomPatternField';
 import CustomNumericField from '../CustomNumericField';
 import CustomDateField from '../CustomDateField';
 import CustomInputField from '../CustomInputField';
+import CustomVehiclePassportField from '../CustomVehiclePassportField';
 
 /**
  * Кастомное поле
@@ -25,6 +26,9 @@ const CustomField = (props) => {
   }
   if (props.field?.format === 'number') {
     Field = CustomNumericField;
+  }
+  if (props.isEpts !== undefined) {
+    Field = CustomVehiclePassportField;
   }
 
   return (
