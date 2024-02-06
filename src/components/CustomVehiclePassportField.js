@@ -31,7 +31,7 @@ const CustomVehiclePassportField = ({
               break;
             case 4:
               valueArr.push(' ');
-              if (!Number(arr[i])) {
+              if (isNaN(Number(arr[i]))) {
                 valueArr.push('');
               } else (
                 valueArr.push(arr[i])
@@ -45,7 +45,7 @@ const CustomVehiclePassportField = ({
             case 8:
             case 9:
             case 10:
-              if (!Number(arr[i])) {
+              if (isNaN(Number(arr[i]))) {
                 valueArr.push('');
               } else (
                 valueArr.push(arr[i])
@@ -76,7 +76,7 @@ const CustomVehiclePassportField = ({
       const valueArr = [];
       for (let i = 0; i < 15; i++) {
         if (i < arr.length) {
-          if (!Number(arr[i])) {
+          if (isNaN(Number(arr[i]))) {
             valueArr.push('');
           } else (
             valueArr.push(arr[i])
