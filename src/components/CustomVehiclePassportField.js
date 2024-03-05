@@ -1,62 +1,73 @@
 import { connectField } from 'uniforms';
-import { AutoField, SelectField } from 'uniforms-antd';
+import { AutoField } from 'uniforms-antd';
 
 const CustomVehiclePassportField = ({
-    isEpts,
+  isEpts,
   ...props
 }) => {
 
   const maskValueVehiclePassportNumber = (e, isEpts) => {
     if (!isEpts) {
       const value = e && e.target && e.target.value ? e.target.value.replace(/ /g, '') : '';
+      const crudeValue = e && e.target && e.target.value ? e.target.value : '';
+      const deleteContent = e && e.nativeEvent && (e.nativeEvent.inputType === 'deleteContentBackward' || e.nativeEvent.inputType === 'deleteContentForward');
+      const cursorPosition = e && e.target ? e.target.selectionStart : 0;
       const arr = value.split('');
       const valueArr = [];
-      for (let i = 0; i < 10; i++) {
-        if (i < arr.length) {
-          switch (i) {
-            case 2:
-              valueArr.push(' ');
-              if (/[A-Za-zА-Яа-я]/.test(arr[i])) {
+      if (!deleteContent) {
+        for (let i = 0; i < 10; i++) {
+          if (i < arr.length) {
+            switch (i) {
+              case 2:
+                valueArr.push(' ');
+                if (/[A-Za-zА-Яа-я]/.test(arr[i])) {
+                  valueArr.push(arr[i]);
+                } else (
+                  valueArr.push('')
+                )
+                break;
+              case 3:
+                if (/[A-Za-zА-Яа-я]/.test(arr[i])) {
+                  valueArr.push(arr[i]);
+                } else (
+                  valueArr.push('')
+                )
+                break;
+              case 4:
+                valueArr.push(' ');
+                if (isNaN(Number(arr[i]))) {
+                  valueArr.push('');
+                } else (
+                  valueArr.push(arr[i])
+                )
+                break;
+              case 0:
+              case 1:
+              case 5:
+              case 6:
+              case 7:
+              case 8:
+              case 9:
+              case 10:
+                if (isNaN(Number(arr[i]))) {
+                  valueArr.push('');
+                } else (
+                  valueArr.push(arr[i])
+                )
+                break;
+              default:
                 valueArr.push(arr[i]);
-              } else (
-                valueArr.push('')
-              )
-              break;
-            case 3:
-              if (/[A-Za-zА-Яа-я]/.test(arr[i])) {
-                valueArr.push(arr[i]);
-              } else (
-                valueArr.push('')
-              )
-              break;
-            case 4:
-              valueArr.push(' ');
-              if (isNaN(Number(arr[i]))) {
-                valueArr.push('');
-              } else (
-                valueArr.push(arr[i])
-              )
-              break;
-            case 0:
-            case 1:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-              if (isNaN(Number(arr[i]))) {
-                valueArr.push('');
-              } else (
-                valueArr.push(arr[i])
-              )
-              break;
-            default:
-              valueArr.push(arr[i]);
+            }
+          }
+        }
+      } else if (deleteContent) {
+        const crudeArr = crudeValue.split('');
+        for (let i = 0; i < 12; i++) {
+          if (i < crudeArr.length) {
+            valueArr.push(crudeArr[i]);
           }
         }
       }
-      const cursorPosition = e && e.target ? e.target.selectionStart : 0;
       if (
         e &&
         e.nativeEvent &&
