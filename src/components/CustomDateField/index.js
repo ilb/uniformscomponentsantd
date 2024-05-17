@@ -40,7 +40,7 @@ const CustomDateField = connectField(
     };
 
     return (
-      <Form.Item required={required} label={label} htmlFor={id} className={styles.dateField}>
+      <Form.Item required={required} label={label} htmlFor={id} className={styles.dateField} {...props}>
         <DatePicker
           showTime={false}
           {...props}
