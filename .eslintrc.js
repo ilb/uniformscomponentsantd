@@ -2,40 +2,40 @@ module.exports = {
   root: true,
   parserOptions: {
     ecmaVersion: 2020,
-    sourceType: 'module',
+    sourceType: "module",
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
   settings: {
     react: {
-      version: 'detect'
-    }
+      version: "detect",
+    },
   },
   env: {
     browser: true,
     amd: true,
     node: true,
-    'jest/globals': true
+    "jest/globals": true,
   },
   extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:jsx-a11y/recommended',
-    'plugin:prettier/recommended',
-    'plugin:jest/recommended'
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "plugin:jest/recommended",
   ],
   rules: {
-    'prettier/prettier': ['error', {}, { usePrettierrc: true }],
-    'react/react-in-jsx-scope': 'off',
-    'react/prop-types': 'off',
-    'jsx-a11y/anchor-is-valid': [
-      'error',
+    "prettier/prettier": ["error", {}, { usePrettierrc: true }],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
       {
-        components: ['Link'],
-        specialLink: ['hrefLeft', 'hrefRight'],
-        aspects: ['invalidHref', 'preferButton']
-      }
-    ]
-  }
+        components: ["Link"],
+        specialLink: ["hrefLeft", "hrefRight"],
+        aspects: ["invalidHref", "preferButton"],
+      },
+    ],
+  },
 };
