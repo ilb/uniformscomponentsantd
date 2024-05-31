@@ -1,47 +1,55 @@
-import React from 'react';
-import { AutoForm, SubmitField, AutoField } from 'uniforms-antd';
-import { ComparisonComponent, createSchemaBridge } from '../src/index';
-import DropdownAntd from '../src/components/DropdownAntd';
-import { Card, Col, Divider, Row } from 'antd';
-import CustomAutoField from '../src/components/CustomAutoField';
-import CustomDateField from '../src/components/CustomDateField';
-import FilledSelectField from '../src/components/FilledSelectField';
+/* eslint-disable no-unused-vars, n/no-missing-import, no-alert, no-undef -- Отключаем eslint no-unused-vars, n/no-missing-import, no-alert, no-undef */
+import { Card, Col, Divider, Row } from "antd";
+import React from "react";
+import { AutoField, AutoForm, SubmitField } from "uniforms-antd";
 
+import CustomAutoField from "../src/components/CustomAutoField";
+import CustomDateField from "../src/components/CustomDateField";
+import DropdownAntd from "../src/components/DropdownAntd";
+import FilledSelectField from "../src/components/FilledSelectField";
+import { ComparisonComponent, createSchemaBridge } from "../src/index";
+
+/**
+ * @returns {JSX.Element}
+ */
 export default function page() {
+  /**
+   * @returns {JSX.Element}
+   */
   const FirstForm = () => {
     const schema = {
-      type: 'object',
+      type: "object",
       properties: {
-        login: { title: 'Логин', type: 'string' },
-        name: { title: 'Имя', type: 'string' },
+        login: { title: "Логин", type: "string" },
+        name: { title: "Имя", type: "string" },
         comparisonField: {
-          title: 'Сравнение с test',
-          type: 'string'
+          title: "Сравнение с test",
+          type: "string",
         },
-        password: { title: 'Пароль', type: 'string' },
+        password: { title: "Пароль", type: "string" },
         dropdownSearchField: {
-          title: 'Селект с поиском',
-          type: 'string'
+          title: "Селект с поиском",
+          type: "string",
         },
         patternTextField: {
-          title: 'Инпут с паттерном',
-          type: 'string',
+          title: "Инпут с паттерном",
+          type: "string",
           uniforms: {
-            pattern: '** ** ******',
-            caseMode: 'upperCase',
+            pattern: "** ** ******",
+            caseMode: "upperCase",
             formatChars: {
-              '*': '[A-Za-zА-Яа-я0-9]'
+              "*": "[A-Za-zА-Яа-я0-9]",
             },
-          }
+          },
         },
         vehiclePassportNumber: {
-          title: 'Номер ПТС',
-          type: 'string',
+          title: "Номер ПТС",
+          type: "string",
         },
       },
       required: [
-        'vehiclePassportNumber'
-      ]
+        "vehiclePassportNumber",
+      ],
     };
 
     const isEpts = false;
@@ -51,31 +59,29 @@ export default function page() {
         showInlineError
         layout="horizontal"
         schema={createSchemaBridge(schema)}
-        onSubmit={(data) => alert(JSON.stringify(data))}>
+        onSubmit={submitData => alert(JSON.stringify(submitData))}>
         <AutoField name="login" />
         <CustomAutoField capitalize name="name" />
         <ComparisonComponent
-          valueToCompare={'TEXT'}
+          valueToCompare={"TEXT"}
           name="comparisonField"
           caseMode="upperCase"
-          value={'text'}
+          value={"text"}
         />
         <AutoField name="password" type="password" />
         <DropdownAntd
           showSearch={true}
           name="dropdownSearchField"
-          resource={() => {
-            return [
-              {
-                text: 'Option 1',
-                value: 'Option 1'
-              },
-              {
-                text: 'Option 2',
-                value: 'Option 2'
-              }
-            ];
-          }}
+          resource={() => [
+            {
+              text: "Option 1",
+              value: "Option 1",
+            },
+            {
+              text: "Option 2",
+              value: "Option 2",
+            },
+          ]}
         />
         <CustomAutoField name='patternTextField' />
         <CustomAutoField name='vehiclePassportNumber' isEpts={isEpts} />
@@ -84,45 +90,48 @@ export default function page() {
     );
   };
 
+  /**
+   * @returns {JSX.Element}
+   */
   const SecondForm = () => {
     const schema = {
-      type: 'object',
+      type: "object",
       properties: {
         divisionCode: {
-          title: 'Код подразделения',
-          type: 'string',
+          title: "Код подразделения",
+          type: "string",
           uniforms: {
-            format: '###-###',
-            mask: '_',
-            maskedValue: true
-          }
+            format: "###-###",
+            mask: "_",
+            maskedValue: true,
+          },
         },
         seriesNumber: {
-          title: 'Серия и номер',
-          type: 'string',
+          title: "Серия и номер",
+          type: "string",
           uniforms: {
-            format: '## ## ######'
-          }
+            format: "## ## ######",
+          },
         },
         manufacturer: {
-          title: 'Производитель',
-          type: 'string'
+          title: "Производитель",
+          type: "string",
         },
         phone: {
-          title: 'Контактный телефон',
-          type: 'string',
+          title: "Контактный телефон",
+          type: "string",
           uniforms: {
-            format: '+#(###)#######',
-            placeholder: '+7(___)_______',
-            mask: '_'
-          }
+            format: "+#(###)#######",
+            placeholder: "+7(___)_______",
+            mask: "_",
+          },
         },
         startDate: {
-          title: 'Дата',
-          type: 'string'
-        }
+          title: "Дата",
+          type: "string",
+        },
       },
-      required: ['address', 'startDate']
+      required: ["address", "startDate"],
     };
 
     return (
@@ -147,13 +156,13 @@ export default function page() {
               name="manufacturer"
               options={[
                 {
-                  value: 'Axe',
-                  label: 'Axe'
+                  value: "Axe",
+                  label: "Axe",
                 },
                 {
-                  value: 'Akira',
-                  label: 'Akira'
-                }
+                  value: "Akira",
+                  label: "Akira",
+                },
               ]}
             />
           </Col>
@@ -179,3 +188,4 @@ export default function page() {
     </>
   );
 }
+/* eslint-enable no-unused-vars, n/no-missing-import, no-alert, no-undef -- Возвращаем eslint no-unused-vars, n/no-missing-import, no-alert, no-undef */

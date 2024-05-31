@@ -1,22 +1,28 @@
-import { JSONSchemaBridge } from 'uniforms-bridge-json-schema';
-import ajv from './ajv.mjs';
-import localize from 'ajv-i18n';
-import ErrorFormatter from './ErrorFormatter.mjs';
+/* eslint-disable n/no-missing-import -- Отключаем eslint no-missing-import */
+import localize from "ajv-i18n";
+import { JSONSchemaBridge } from "uniforms-bridge-json-schema";
 
-export { default as ComparisonComponent } from './components/ComparisonComponent';
-export { default as Dropdown } from './components/DropdownAntd';
+import ajv from "./ajv.mjs";
+import ErrorFormatter from "./ErrorFormatter.mjs";
 
-export { default as CustomAutoField } from './components/CustomAutoField';
-export { default as CustomDateField } from './components/CustomDateField';
-export { default as CustomNumericField } from './components/CustomNumericField';
-export { default as CustomPatternField } from './components/CustomPatternField';
-export { default as CustomSelectField } from './components/CustomSelectField';
-export { default as FilledSelectField } from './components/FilledSelectField';
+export { default as ComparisonComponent } from "./components/ComparisonComponent";
+export { default as CustomAutoField } from "./components/CustomAutoField";
+export { default as CustomDateField } from "./components/CustomDateField";
+export { default as CustomNumericField } from "./components/CustomNumericField";
+export { default as CustomPatternField } from "./components/CustomPatternField";
+export { default as CustomSelectField } from "./components/CustomSelectField";
+export { default as Dropdown } from "./components/DropdownAntd";
+export { default as FilledSelectField } from "./components/FilledSelectField";
 
+/**
+ * @param {Object} schema
+ * @param {Function} additionalValidator
+ * @returns {Function}
+ */
 const createValidator = (schema, additionalValidator) => {
   const validator = ajv.compile(schema);
 
-  return (model) => {
+  return model => {
     let errors = [];
 
     validator(model);
@@ -33,11 +39,19 @@ const createValidator = (schema, additionalValidator) => {
       localize.ru(errors);
       return { details: ErrorFormatter.make(errors, schema) };
     }
+
+    return null;
   };
 };
 
+/**
+ * @param {Object} schema
+ * @param {Function} additionalValidator
+ * @returns {JSONSchemaBridge}
+ */
 export const createSchemaBridge = (schema, additionalValidator) => {
   const schemaValidator = createValidator(schema, additionalValidator);
 
   return new JSONSchemaBridge(schema, schemaValidator);
 };
+/* eslint-enable n/no-missing-import -- Возвращаем eslint no-missing-import */

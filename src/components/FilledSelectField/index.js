@@ -1,6 +1,14 @@
-import { useEffect, useState } from 'react';
-import CustomAutoField from '../CustomAutoField';
+/* eslint-disable no-unused-vars, n/no-missing-import -- Отключаем eslint no-unused-vars и n/no-missing-import */
+import { useEffect, useState } from "react";
 
+import CustomAutoField from "../CustomAutoField";
+
+/**
+ * @param {Object} root0
+ * @param {Array} root0.options
+ * @param {boolean} root0.showSearch
+ * @returns {JSX.Element}
+ */
 const Index = ({ options, showSearch = true, ...props }) => {
   const [_options, setOptions] = useState(options);
 
@@ -11,11 +19,13 @@ const Index = ({ options, showSearch = true, ...props }) => {
   return (
     <CustomAutoField
       {...props}
-      onSearch={(value) => {
-        value = value.trim();
+      onSearch={value => {
+        const newValue = value.trim();
 
-        setOptions([...options, ...(value ? [{ value, label: value }] : [])]);
-        props.onSearch && props.onSearch(value);
+        setOptions([...options, ...(newValue ? [{ newValue, label: newValue }] : [])]);
+        if (props.onSearch) {
+          props.onSearch(newValue);
+        }
       }}
       showSearch={showSearch}
       options={_options}
@@ -24,3 +34,4 @@ const Index = ({ options, showSearch = true, ...props }) => {
 };
 
 export default Index;
+/* eslint-enable no-unused-vars, n/no-missing-import -- Возвращаем eslint no-unused-vars и n/no-missing-import */
