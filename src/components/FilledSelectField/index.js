@@ -22,7 +22,7 @@ const Index = ({ options, showSearch = true, ...props }) => {
       onSearch={value => {
         const newValue = value.trim();
 
-        setOptions([...options, ...(newValue ? [{ newValue, label: newValue }] : [])]);
+        setOptions([...options, ...(newValue ? [{ value: newValue, label: newValue }] : [])]);
         if (props.onSearch) {
           props.onSearch(newValue);
         }
