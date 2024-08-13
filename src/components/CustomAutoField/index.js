@@ -7,6 +7,7 @@ import CustomInputField from "../CustomInputField";
 import CustomNumericField from "../CustomNumericField";
 import CustomPatternField from "../CustomPatternField";
 import CustomVehiclePassportField from "../CustomVehiclePassportField";
+import CustomNumberField from "../CustomNumberField";
 
 /**
  * Кастомное поле
@@ -19,6 +20,9 @@ const CustomField = props => {
 
   if (props.field?.uniforms?.format) {
     Field = CustomPatternField;
+  }
+  if (props.field?.uniforms?.thousandSeparator) {
+    Field = CustomNumberField;
   }
   if (props.field?.uniforms?.pattern) {
     Field = CustomInputField;
