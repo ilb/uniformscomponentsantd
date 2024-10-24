@@ -27,6 +27,7 @@ import styles from "./index.module.scss";
  * @param {Function} props.onInput
  * @param {string} props.className
  * @param {string} props.id
+ * @param {string} props.title
  * @returns {JSX.Element}
  */
 const CustomInput = ({
@@ -48,6 +49,7 @@ const CustomInput = ({
   onInput,
   className,
   id,
+  title
 }) => {
   const inputRef = useRef();
 
@@ -93,6 +95,7 @@ const CustomInput = ({
         }
       }}
       {...numericFormatProps}
+      title={title}
     />
   );
 
