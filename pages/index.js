@@ -42,6 +42,13 @@ export default function page() {
             },
           },
         },
+        patternNumberField: {
+          title: "Число с разделетилем разрядов",
+          type: "string",
+          uniforms: {
+            thousandSeparator: " "
+          },
+        },
         vehiclePassportNumber: {
           title: "Номер ПТС",
           type: "string",
@@ -84,6 +91,7 @@ export default function page() {
           ]}
         />
         <CustomAutoField name='patternTextField' />
+        <CustomAutoField name='patternNumberField' />
         <CustomAutoField name='vehiclePassportNumber' isEpts={isEpts} />
         <SubmitField value="Войти" />
       </AutoForm>
