@@ -7,7 +7,7 @@ import CustomAutoField from "../src/components/CustomAutoField";
 import CustomDateField from "../src/components/CustomDateField";
 import DropdownAntd from "../src/components/DropdownAntd";
 import FilledSelectField from "../src/components/FilledSelectField";
-import { ComparisonComponent, createSchemaBridge } from "../src/index";
+import { ComparisonComponent, createSchemaBridge, CustomNumericField } from '../src/index';
 
 /**
  * @returns {JSX.Element}
@@ -130,6 +130,10 @@ export default function page() {
           title: "Дата",
           type: "string",
         },
+        amount: {
+          title: "Числовое поле",
+          type: "string",
+        },
       },
       required: ["address", "startDate"],
     };
@@ -137,11 +141,14 @@ export default function page() {
     return (
       <AutoForm schema={createSchemaBridge(schema)} onSubmit={console.log}>
         <Row>
-          <Col span={12}>
+          <Col span={8}>
             <CustomDateField name="startDate" />
           </Col>
-          <Col span={12}>
+          <Col span={8}>
             <CustomAutoField name="divisionCode" />
+          </Col>
+          <Col span={8}>
+            <CustomNumericField name="amount" />
           </Col>
         </Row>
         <Row>

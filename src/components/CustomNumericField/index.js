@@ -62,6 +62,23 @@ const CustomInput = ({
       onAfterChange(newValue);
     }
   };
+
+  /**
+   * Обработчик события вставки текста. Если вставленный текст содержит запятую,
+   * то он ее заменяет на точку.
+   *
+   * @param {Event} event - событие вставки
+   * @returns {void}
+   */
+  const handlePaste = (event) => {
+    event.preventDefault();
+    const clipboardData = event.clipboardData || window.clipboardData;
+    const pastedData = clipboardData.getData('Text');
+    const modifiedData = pastedData.replace(',', '.');
+
+    handleOnValueChange(modifiedData);
+  };
+
   const inputAdditionalLabel = additionalLabel || field.uniforms?.additionalLabel;
 
   const numericFormatProps = field.uniforms || {};
@@ -79,6 +96,7 @@ const CustomInput = ({
       allowEmptyFormatting={false}
       className={className ? className : styles.patternInput}
       onInput={onInput}
+      onPaste={handlePaste}
       onValueChange={values => {
         const newValue = field.type === "string" ? values.value : values.floatValue;
 
